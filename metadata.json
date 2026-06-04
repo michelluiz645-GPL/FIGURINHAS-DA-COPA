@@ -1,0 +1,6 @@
+{
+  "name": "Trocacard",
+  "description": "Plataforma premium para compra, venda e troca de figurinhas colecionáveis",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

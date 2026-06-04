@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Syne", sans-serif;
+  
+  --color-brand-yellow: #FFD700;
+  --color-brand-green: #22C55E;
+  --color-brand-blue: #3B82F6;
+  --color-dark-bg: #0a0a1a;
+}
+
+/* Custom styles for Trocacard premium experience */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }
+
+  .glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 12px 40px 0 rgba(255, 215, 0, 0.15); /* Gold glow */
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .glass-card-green-hover:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(34, 197, 94, 0.4);
+    box-shadow: 0 12px 40px 0 rgba(34, 197, 94, 0.15); /* Green glow */
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .glass-card-blue-hover:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 12px 40px 0 rgba(59, 130, 246, 0.15); /* Blue glow */
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .glass-input {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s;
+  }
+
+  .glass-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: #FFD700;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+  }
+
+  /* Custom Glow texts */
+  .glow-text-yellow {
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  }
+  
+  .glow-text-green {
+    text-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+  }
+
+  .glow-text-blue {
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* Base resets & animations */
+body {
+  background-color: #0a0a1a;
+  color: #f3f4f6;
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+}
+
+/* Animated Gradient Mesh Ambient Background */
+.ambient-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  background-color: #050510;
+  overflow: hidden;
+}
+
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.blob-yellow {
+  background: #FFD700;
+  width: 500px;
+  height: 500px;
+  top: -100px;
+  left: -100px;
+  animation: float-blob-1 25s infinite alternate ease-in-out;
+}
+
+.blob-green {
+  background: #22C55E;
+  width: 600px;
+  height: 600px;
+  bottom: -150px;
+  right: -100px;
+  animation: float-blob-2 30s infinite alternate ease-in-out;
+}
+
+.blob-blue {
+  background: #3B82F6;
+  width: 550px;
+  height: 550px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float-blob-3 28s infinite alternate ease-in-out;
+}
+
+@keyframes float-blob-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(120px, 80px) scale(1.1); }
+  100% { transform: translate(-50px, 150px) scale(0.9); }
+}
+
+@keyframes float-blob-2 {
+  0% { transform: translate(0, 0) scale(1.1); }
+  50% { transform: translate(-150px, -100px) scale(0.95); }
+  100% { transform: translate(60px, -50px) scale(1.15); }
+}
+
+@keyframes float-blob-3 {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(0.9); }
+  50% { transform: translate(-40%, -60%) rotate(180deg) scale(1.1); }
+  100% { transform: translate(-55%, -45%) rotate(360deg) scale(0.95); }
+}
+
+/* Subtle Overlay Texture Grain */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Animated floating sticker cards CSS animation */
+.floating-sticker {
+  animation: float-sticker 8s infinite ease-in-out;
+}
+
+.floating-sticker-delayed-1 {
+  animation: float-sticker 9s infinite ease-in-out;
+  animation-delay: 1.5s;
+}
+
+.floating-sticker-delayed-2 {
+  animation: float-sticker 10s infinite ease-in-out;
+  animation-delay: 3s;
+}
+
+@keyframes float-sticker {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* Animated shine on premium cards on hover */
+.shine-overlay {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 30%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+
+.shine-card:hover .shine-overlay {
+  left: 150%;
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
